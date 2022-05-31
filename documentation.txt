@@ -1,0 +1,1 @@
+Bus stations https://api.tfl.gov.uk/StopPoint/Type/NaptanBusCoachStation?app_id={{app_id}}&app_key={{app_key}}
