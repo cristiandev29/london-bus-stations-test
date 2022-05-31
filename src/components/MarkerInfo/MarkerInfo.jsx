@@ -1,8 +1,8 @@
-function MarkerInfo({ busStopId }) {
+function MarkerInfo({ name, id }) {
   return (
     <div>
-      <p>MARCADOR</p>
-      <p>{busStopId}</p>
+      <p>{name}</p>
+      <p>{id}</p>
     </div>
   );
 }

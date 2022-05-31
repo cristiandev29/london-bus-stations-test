@@ -1,13 +1,11 @@
 import { useState } from "react";
 import { Route } from "wouter";
 import "./App.css";
-import BusStop from "./pages/BusStop";
+import BusStop from "./pages/BusStation";
 import Home from "./pages/Home";
 import Header from "./components/Header/Header";
 
 function App() {
-  const [appId, setAppId] = useState(import.meta.env.VITE_APP_ID_TFL);
-  console.log(import.meta.env.VITE_APP_ID_TFL);
   return (
     <div className="app">
       <div className="header">

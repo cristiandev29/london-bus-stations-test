@@ -1,5 +1,3 @@
-import { useEffect } from "react";
-
 export default function (map) {
   const neLat = map.getBounds().getNorthEast().lat();
   const neLng = map.getBounds().getNorthEast().lng();
@@ -27,8 +25,6 @@ export default function (map) {
     fillColor: "#FF0000",
     fillOpacity: 0.35,
   });
-
-  console.log("CALCULANDO MAP POLYGON");
 
   return mapPolygon;
 }
