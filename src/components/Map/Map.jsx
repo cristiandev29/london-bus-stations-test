@@ -2,6 +2,8 @@ import styles from "./Map.module.css";
 import { useEffect, useState, useRef } from "react";
 import useMapVisibleArea from "../../hooks/useMapVisibleArea";
 import { useLocation } from "wouter";
+import MarkerInfo from "../MarkerInfo/MarkerInfo";
+import ReactDOMServer from "react-dom/server";
 
 function Map() {
   const [map, setMap] = useState(null);
@@ -10,8 +12,8 @@ function Map() {
   let mapPolygon = null;
 
   const checkPointsCoordinates = [
-    { lat: 40.4531101, lng: -3.689555 },
     { lat: 51.508044, lng: -0.126487 },
+    { lat: 51.52293436283715, lng: -0.028970248481197405 },
   ];
 
   useEffect(() => {
@@ -75,18 +77,18 @@ function Map() {
   }, [map]);
 
   const checkIfPointIsInMap = (coordinates) => {
-    coordinates.forEach((item) => {
+    coordinates.forEach((item, key) => {
       const { lat, lng } = item;
       const checkPoint = new google.maps.LatLng(lat, lng);
 
       console.log("mapPolygon in checkIfPointIsInMap", mapPolygon);
       if (google.maps.geometry.poly.containsLocation(checkPoint, mapPolygon)) {
-        addMarker(checkPoint);
+        addMarker(checkPoint, key);
       }
     });
   };
 
-  const addMarker = (location) => {
+  const addMarker = (location, busStopId) => {
     const marker = new google.maps.Marker({
       position: location,
       map: map,
@@ -94,13 +96,22 @@ function Map() {
       icon: "https://developers.google.com/maps/documentation/javascript/examples/full/images/beachflag.png",
     });
 
-    //RENDER COMPONENTE REACT
     const infoWindow = new google.maps.InfoWindow({
-      content: "<div><h3>HOLA</h3></div>",
+      content: "",
     });
 
-    marker.addListener("mouseover", () => infoWindow.open(map, marker));
-    marker.addListener("mouseout", () => infoWindow.close());
+    marker.addListener("mouseover", () => {
+      const content = ReactDOMServer.renderToString(
+        <MarkerInfo busStopId={busStopId} />
+      );
+      infoWindow.setContent(content);
+      infoWindow.open(map, marker);
+    });
+
+    marker.addListener("mouseout", () => {
+      infoWindow.close();
+    });
+
     marker.addListener("click", () => {
       infoWindow.close();
       setLocation("/bus-stop/1");
