@@ -35,7 +35,9 @@
       const map = new google.maps.Map(document.getElementById("map"), {
         center: new google.maps.LatLng(51.503, -0.1021),
         zoom: 12,
-        styles: [
+        fullscreenControl: false,
+        mapTypeControl: false,
+        stylers: [
           {
             featureType: "poi",
             elementType: "all",
