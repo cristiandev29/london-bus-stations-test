@@ -19,3 +19,26 @@ export const getBusStations = (callback) => {
       callback(busStations);
     });
 };
+
+export const getArrivals = (callback) => {
+  // For problems with api arrivals, i have to use the following url with default busStationId and line:
+  const busStationId = "940GZZLUSKW";
+  const line = "victoria";
+  const url = `${
+    import.meta.env.VITE_API_TFL
+  }/Line/${line}/Arrivals/${busStationId}?app_id=${
+    import.meta.env.VITE_APP_ID_TFL
+  }&app_key=${import.meta.env.VITE_APP_KEY_TFL}`;
+
+  fetch(url)
+    .then((response) => response.json())
+    .then((data) => {
+      const arrivals = data.map((arrival) => {
+        return {
+          id: arrival.id,
+          expectedArrival: arrival.expectedArrival,
+        };
+      });
+      callback(arrivals);
+    });
+};

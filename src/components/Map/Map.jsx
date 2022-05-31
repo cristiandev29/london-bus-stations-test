@@ -75,7 +75,7 @@ function Map({ busStations }) {
 
     marker.addListener("click", () => {
       infoWindow.close();
-      setLocation("/bus-stop/1");
+      setLocation(`/bus-stop/${id}`);
     });
   };
 

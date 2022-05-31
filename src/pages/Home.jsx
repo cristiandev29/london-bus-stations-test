@@ -1,7 +1,7 @@
 import Map from "../components/Map/Map";
-import stylesGlobal from "../Globals.module.css";
 import { useState, useEffect } from "react";
 import { getBusStations } from "../services/tfl";
+import stylesGlobal from "../Globals.module.css";
 
 function Home() {
   const [busStations, setBusStations] = useState();
