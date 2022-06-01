@@ -5,7 +5,7 @@ export const getBusStations = (callback) => {
     import.meta.env.VITE_APP_ID_TFL
   }&app_key=${import.meta.env.VITE_APP_KEY_TFL}`;
 
-  fetch(url)
+  return fetch(url)
     .then((response) => response.json())
     .then((data) => {
       const busStations = data.map((busStation) => {
@@ -16,7 +16,7 @@ export const getBusStations = (callback) => {
           name: busStation.commonName,
         };
       });
-      callback(busStations);
+      return busStations;
     });
 };
 
@@ -30,7 +30,7 @@ export const getArrivals = (callback) => {
     import.meta.env.VITE_APP_ID_TFL
   }&app_key=${import.meta.env.VITE_APP_KEY_TFL}`;
 
-  fetch(url)
+  return fetch(url)
     .then((response) => response.json())
     .then((data) => {
       const arrivals = data.map((arrival) => {
@@ -39,6 +39,6 @@ export const getArrivals = (callback) => {
           expectedArrival: arrival.expectedArrival,
         };
       });
-      callback(arrivals);
+      return arrivals;
     });
 };

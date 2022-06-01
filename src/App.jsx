@@ -13,7 +13,7 @@ function App() {
       </div>
       <div className="content">
         <Route path="/" component={Home} />
-        <Route path="/bus-stop/:id">{BusStop}</Route>
+        <Route path="/bus-stop/:id" component={BusStop} />
       </div>
     </div>
   );

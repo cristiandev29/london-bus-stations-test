@@ -1,18 +1,18 @@
 import Map from "../components/Map/Map";
 import { useState, useEffect } from "react";
 import { getBusStations } from "../services/tfl";
-import stylesGlobal from "../Globals.module.css";
 
 function Home() {
-  const [busStations, setBusStations] = useState();
+  const [busStations, setBusStations] = useState([]);
 
   useEffect(() => {
-    console.log('Efecti getBusStations');
-    getBusStations(setBusStations);
+    getBusStations().then((items) => {
+      setBusStations(items);
+    });
   }, []);
 
   return (
-    <div className={stylesGlobal.homePage}>
+    <div className="home-page">
       {busStations && <Map busStations={busStations} />}
     </div>
   );

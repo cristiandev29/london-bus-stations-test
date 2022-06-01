@@ -1,16 +1,17 @@
 import { useState, useEffect } from "react";
 import { getArrivals } from "../services/tfl";
-import stylesGlobal from "../Globals.module.css";
 
 function BusStop({ id }) {
-  const [arrivals, setArrivals] = useState();
+  const [arrivals, setArrivals] = useState([]);
 
   useEffect(() => {
-    getArrivals(setArrivals);
+    getArrivals().then((items) => {
+      setArrivals(items);
+    });
   }, []);
 
   return (
-    <div className={stylesGlobal.busStation}>
+    <div className="bus-station">
       {arrivals && (
         <section>
           {arrivals.map((arrival) => {
