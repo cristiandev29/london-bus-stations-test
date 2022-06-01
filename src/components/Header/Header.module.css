@@ -1,0 +1,18 @@
+.header {
+  align-items: center;
+  background-color: #F5F5F5;
+  border-radius: 10px;
+  box-shadow: 4px 3px 4px #aaa;
+  display: flex;
+  justify-content: space-between;
+  padding: 10px;
+}
+
+.backLink {
+  color: #000;
+  text-decoration: none;
+}
+
+.backLink:hover {
+  color:#1694EB  
+}

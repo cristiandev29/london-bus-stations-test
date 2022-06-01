@@ -1,21 +1,19 @@
-import { useState } from "react";
-import { Route, Link } from "wouter";
+import { Route } from "wouter";
 import "./App.css";
-import BusStop from "./pages/BusStop";
+import BusStation from "./pages/BusStation";
 import Home from "./pages/Home";
+import Header from "./components/Header/Header";
 
 function App() {
   return (
-    <div className="App">
-      <Link href="/" className="active">
-        Home
-      </Link>
-      <Link href="/bus-stop/1" className="active">
-        BusStop
-      </Link>
-      ;
-      <Route path="/" component={Home} />
-      <Route path="/bus-stop/:id">{BusStop}</Route>
+    <div className="app">
+      <div className="header">
+        <Header></Header>
+      </div>
+      <div className="content">
+        <Route path="/" component={Home} />
+        <Route path="/bus-station/:id/:name" component={BusStation} />
+      </div>
     </div>
   );
 }
