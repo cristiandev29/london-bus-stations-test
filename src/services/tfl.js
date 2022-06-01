@@ -1,4 +1,4 @@
-export const getBusStations = (callback) => {
+export const getBusStations = () => {
   const url = `${
     import.meta.env.VITE_API_TFL
   }/StopPoint/Type/NaptanBusCoachStation?app_id=${
@@ -8,19 +8,21 @@ export const getBusStations = (callback) => {
   return fetch(url)
     .then((response) => response.json())
     .then((data) => {
-      const busStations = data.map((busStation) => {
-        return {
-          id: busStation.id,
-          lat: busStation.lat,
-          lng: busStation.lon,
-          name: busStation.commonName,
-        };
-      });
+      const busStations = data.map(
+        ({ id, lat, lon: lng, commonName: name }) => {
+          return {
+            id,
+            lat,
+            lng,
+            name,
+          };
+        }
+      );
       return busStations;
     });
 };
 
-export const getArrivals = (callback) => {
+export const getArrivals = () => {
   // For problems with api arrivals, i have to use the following url with default busStationId and line:
   const busStationId = "940GZZLUSKW";
   const line = "victoria";
@@ -33,10 +35,11 @@ export const getArrivals = (callback) => {
   return fetch(url)
     .then((response) => response.json())
     .then((data) => {
-      const arrivals = data.map((arrival) => {
+      const arrivals = data.map(({ id, expectedArrival, destinationName }) => {
         return {
-          id: arrival.id,
-          expectedArrival: arrival.expectedArrival,
+          id,
+          expectedArrival,
+          destinationName,
         };
       });
       return arrivals;

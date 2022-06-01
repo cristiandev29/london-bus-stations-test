@@ -1,14 +1,13 @@
 {
   "name": "london-bus-stops-test",
   "private": true,
-  "version": "0.0.0",
+  "version": "1.0.0",
   "scripts": {
     "dev": "vite",
     "build": "vite build",
     "preview": "vite preview"
   },
   "dependencies": {
-    "google-maps-react": "^2.0.6",
     "react": "^18.0.0",
     "react-dom": "^18.1.0",
     "wouter": "^2.8.0-alpha.2"

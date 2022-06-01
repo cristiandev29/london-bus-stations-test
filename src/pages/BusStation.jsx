@@ -1,8 +1,10 @@
 import { useState, useEffect } from "react";
+import { Link, useRoute } from "wouter";
 import { getArrivals } from "../services/tfl";
 
-function BusStop({ id }) {
+function BusStation({ id }) {
   const [arrivals, setArrivals] = useState([]);
+  const [match, params] = useRoute("/bus-station/:id/:name");
 
   useEffect(() => {
     getArrivals().then((items) => {
@@ -12,12 +14,22 @@ function BusStop({ id }) {
 
   return (
     <div className="bus-station">
+      <div>
+        <h2>{decodeURIComponent(params.name)}</h2>
+      </div>
+      <h3>Próximas llegadas</h3>
       {arrivals && (
         <section>
           {arrivals.map((arrival) => {
             return (
-              <article key={arrival.id}>
-                <p>{arrival.expectedArrival}</p>
+              <article className="arrival" key={arrival.id}>
+                <p className="expected-arrival">
+                  {new Intl.DateTimeFormat("es-ES", {
+                    dateStyle: "medium",
+                    timeStyle: "long",
+                  }).format(new Date(arrival.expectedArrival))}
+                </p>
+                <p>Destino: {arrival.destinationName}</p>
               </article>
             );
           })}
@@ -27,4 +39,4 @@ function BusStop({ id }) {
   );
 }
 
-export default BusStop;
+export default BusStation;

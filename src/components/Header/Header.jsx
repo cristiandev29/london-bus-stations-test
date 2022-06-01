@@ -1,15 +1,18 @@
-import { Link } from "wouter";
-import { useEffect, useState, useRef } from "react";
+import { Link, useRoute } from "wouter";
 import styles from "./Header.module.css";
 function Header() {
+  const [match, params] = useRoute("/bus-station/:id/:name");
+
+  console.log(match);
   return (
     <div id="header" className={styles.header}>
-      <Link href="/" className="active">
-        Home
-      </Link>
-      <Link href="/bus-stop/1" className="active">
-        BusStop
-      </Link>
+      <h2>London TFL</h2>
+
+      {match && (
+        <Link className={styles.backLink} href="/">
+          {"< Volver"}
+        </Link>
+      )}
     </div>
   );
 }

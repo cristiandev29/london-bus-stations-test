@@ -1,7 +1,6 @@
-import { useState } from "react";
 import { Route } from "wouter";
 import "./App.css";
-import BusStop from "./pages/BusStation";
+import BusStation from "./pages/BusStation";
 import Home from "./pages/Home";
 import Header from "./components/Header/Header";
 
@@ -13,7 +12,7 @@ function App() {
       </div>
       <div className="content">
         <Route path="/" component={Home} />
-        <Route path="/bus-stop/:id" component={BusStop} />
+        <Route path="/bus-station/:id/:name" component={BusStation} />
       </div>
     </div>
   );

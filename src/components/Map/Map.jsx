@@ -49,7 +49,7 @@ function Map({ busStations }) {
     });
   };
 
-  const addMarker = (location, { name, id }) => {
+  const addMarker = (location, { id, name }) => {
     const marker = new google.maps.Marker({
       position: location,
       map: map,
@@ -75,7 +75,7 @@ function Map({ busStations }) {
 
     marker.addListener("click", () => {
       infoWindow.close();
-      setLocation(`/bus-stop/${id}`);
+      setLocation(`/bus-station/${id}/${name}`);
     });
   };
 

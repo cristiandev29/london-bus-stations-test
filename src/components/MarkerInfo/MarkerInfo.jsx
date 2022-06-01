@@ -1,6 +1,8 @@
+import styles from "./MarkerInfo.module.css";
+
 function MarkerInfo({ name, id }) {
   return (
-    <div>
+    <div className={styles.marker}>
       <p>{name}</p>
       <p>{id}</p>
     </div>
